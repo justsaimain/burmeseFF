@@ -5347,7 +5347,16 @@ __webpack_require__.r(__webpack_exports__);
       frmData.append("redirect_uri", "https://fantasy.premierleague.com/a/login");
       frmData.append("app", "plfpl-web");
       axios.post("https://users.premierleague.com/accounts/login/", frmData).then(function (res) {
-        return console.log(res);
+        console.log(res);
+
+        if (res.status == 200) {
+          var url = new URL(res.request.responseURL);
+          var urlParams = new URLSearchParams(url.search);
+          var state = urlParams.get('state');
+          var reason = urlParams.get('reason');
+          console.log(state);
+          console.log(reason);
+        }
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -5412,7 +5421,7 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 
 
 
-(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common["Access-Control-Allow-Origin"]) = '*';
+(axios__WEBPACK_IMPORTED_MODULE_0___default().defaults.headers.common["Content-Type"]) = 'application/json';
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_6__["default"]);
 Vue.use(vuex__WEBPACK_IMPORTED_MODULE_7__["default"]);
 Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_1__["default"], (axios__WEBPACK_IMPORTED_MODULE_0___default()));
