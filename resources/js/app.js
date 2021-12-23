@@ -22,7 +22,7 @@ import {
     google_login_redirect,
 } from "./config";
 
-axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 Vue.use(VueRouter);
 Vue.use(Vuex);

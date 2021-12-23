@@ -69,14 +69,28 @@ export default {
             let frmData = new FormData();
             frmData.append("login", this.email);
             frmData.append("password", this.password);
-            frmData.append("redirect_uri", "https://fantasy.premierleague.com/a/login");
+            frmData.append(
+                "redirect_uri",
+                "https://fantasy.premierleague.com/a/login"
+            );
             frmData.append("app", "plfpl-web");
+
             axios
                 .post(
                     "https://users.premierleague.com/accounts/login/",
                     frmData
                 )
-                .then((res) => console.log(res))
+                .then((res) => {
+                    console.log(res);
+                    if (res.status == 200) {
+                        const url = new URL(res.request.responseURL);
+                        const urlParams = new URLSearchParams(url.search);
+                        const state = urlParams.get('state');
+                        const reason = urlParams.get('reason');
+                        console.log(state);
+                        console.log(reason);
+                    }
+                })
                 .catch((err) => console.log(err));
         },
         authProvider(provider) {
