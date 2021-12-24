@@ -78,15 +78,20 @@ export default {
             axios
                 .post(
                     "https://users.premierleague.com/accounts/login/",
-                    frmData
+                    frmData,
+                    {
+                        headers: {
+                            // remove headers
+                        },
+                    }
                 )
                 .then((res) => {
                     console.log(res);
                     if (res.status == 200) {
                         const url = new URL(res.request.responseURL);
                         const urlParams = new URLSearchParams(url.search);
-                        const state = urlParams.get('state');
-                        const reason = urlParams.get('reason');
+                        const state = urlParams.get("state");
+                        const reason = urlParams.get("reason");
                         console.log(state);
                         console.log(reason);
                     }
