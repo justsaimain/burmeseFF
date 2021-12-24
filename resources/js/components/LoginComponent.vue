@@ -76,24 +76,11 @@ export default {
             frmData.append("app", "plfpl-web");
 
             axios
-                .post(
-                    "https://users.premierleague.com/accounts/login/",
-                    frmData,
-                    {
-                        headers: {
-                            // remove headers
-                        },
-                    }
-                )
+                .post("/api/login", frmData)
                 .then((res) => {
-                    console.log(res);
-                    if (res.status == 200) {
-                        const url = new URL(res.request.responseURL);
-                        const urlParams = new URLSearchParams(url.search);
-                        const state = urlParams.get("state");
-                        const reason = urlParams.get("reason");
-                        console.log(state);
-                        console.log(reason);
+                    const { data } = res;
+                    if (data.success) {
+                        window.location.href = '/profile';
                     }
                 })
                 .catch((err) => console.log(err));

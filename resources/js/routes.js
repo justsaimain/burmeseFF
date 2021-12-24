@@ -1,22 +1,22 @@
-import Login from './components/LoginComponent.vue'
-import Register from './components/RegisterComponent.vue'
-import App from './components/AppComponent.vue';
-
 export const routes = [
     {
 		path: '/',
-        component: App
+        component: () => import('./components/AppComponent.vue')
     },
 	{
 		path: '/home',
-        component: App
+        component: () => import('./components/AppComponent.vue')
     },
     {
 		path:'/login',
-        component: Login
+        component: () => import('./components/LoginComponent.vue')
     },
 	{
 		path:'/register',
-        component: Register
-    }
+        component: () => import('./components/RegisterComponent.vue')
+    },
+    {
+		path:'/profile',
+        component: () => import('./pages/ProfilePage.vue')
+    },
 ];
